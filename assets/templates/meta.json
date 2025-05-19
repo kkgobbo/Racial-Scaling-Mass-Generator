@@ -1,0 +1,44 @@
+{
+  "Name": "[PLACEHOLDER] Height Mod",
+  "Author": "Height Mod Generator",
+  "Version": "1.0.0",
+  "ModTags": [
+    "Character",
+    "Body",
+    "Height"
+  ],
+  "Description": "Generated height modification for FFXIV characters. Adjusts character height using racial scaling multipliers.",
+  "ModVersion": "1.0",
+  "GameVersion": "6.0+",
+  "Website": "",
+  "BinVersion": 4,
+  "TargetApplicationName": "FFXIV_DX11",
+  "IsUiMod": false,
+  "IsMetaMod": false,
+  "ModPackPages": [
+    {
+      "Index": 0,
+      "ModGroups": [
+        {
+          "GroupName": "Height Variants",
+          "SelectionType": "Single",
+          "OptionList": [
+            {
+              "Name": "Default",
+              "Description": "Default height modification",
+              "IsChecked": true,
+              "GroupImagePath": "",
+              "SelectionType": "Single",
+              "ModsJsons": [
+                {
+                  "Name": "Default Height Mod",
+                  "ModsJson": "default_mod.json"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

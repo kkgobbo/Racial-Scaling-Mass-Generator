@@ -1,0 +1,105 @@
+{
+  "FileSwaps": {},
+  "Manipulations": [
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Hyur",
+        "SubRace": "Midlander",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.04
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Hyur",
+        "SubRace": "Highlander",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.144
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Miqote",
+        "SubRace": "KeeperOfTheMoon",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.04
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Miqote",
+        "SubRace": "SeekerOfTheSun",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.04
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Roegadyn",
+        "SubRace": "Seawolf",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.16
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Roegadyn",
+        "SubRace": "Hellsguard",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.16
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "AuRa",
+        "SubRace": "Raen",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.01
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "AuRa",
+        "SubRace": "Xaela",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.01
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Viera",
+        "SubRace": "Rava",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.189
+      }
+    },
+    {
+      "Type": "Rsp",
+      "FileSource": 0,
+      "Manipulation": {
+        "Race": "Viera",
+        "SubRace": "Veena",
+        "Attribute": "FemaleMaxSize",
+        "Entry": 1.189
+      }
+    }
+  ]
+}

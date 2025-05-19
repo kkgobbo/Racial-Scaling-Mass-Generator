@@ -1,0 +1,272 @@
+    .tab-navigation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .tab-button {
+        width: 100%;
+        min-height: 48px;
+        font-size: 0.9rem;
+    }
+    
+    .collection-info,
+    .sort-order-info {
+        padding: 1rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .preview-mod-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    
+    .mod-priority {
+        align-self: flex-end;
+    }/* Mobile First Responsive Design */
+
+/* Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    section {
+        padding: 1.5rem;
+    }
+}
+
+/* Tablets Portrait */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .file-upload-area {
+        gap: 0.8rem;
+    }
+    
+    section {
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .generate-button {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .progress-info {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 640px) {
+    header {
+        padding: 1.5rem 0;
+        margin-bottom: 2rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    main {
+        gap: 1.5rem;
+    }
+    
+    .checkbox-group {
+        gap: 0.6rem;
+    }
+    
+    .checkbox-item {
+        padding: 0.8rem;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    section {
+        padding: 1rem;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="file"] {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+    
+    .generate-button {
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .progress-container {
+        padding: 0.8rem;
+    }
+    
+    .preview-item {
+        padding: 0.8rem;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    /* Sharper borders and shadows for retina displays */
+    section {
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .generate-button:hover {
+        box-shadow: 0 3px 10px rgba(52, 152, 219, 0.4);
+    }
+}
+
+/* Print Styles */
+@media print {
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    header,
+    footer {
+        border: none;
+    }
+    
+    .generate-button,
+    .file-upload-area,
+    .progress-container {
+        display: none;
+    }
+    
+    section {
+        break-inside: avoid;
+        background: white;
+        border: 1px solid #ccc;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000000;
+        --text-muted: #333333;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="file"] {
+        border-width: 3px;
+    }
+    
+    button {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --surface-color: #2d2d2d;
+        --text-color: #e1e1e1;
+        --text-muted: #b1b1b1;
+        --border-color: #404040;
+        --secondary-color: #e1e1e1;
+    }
+    
+    .file-upload {
+        background-color: rgba(255, 255, 255, 0.02);
+    }
+    
+    .generation-preview {
+        background-color: #252525;
+    }
+    
+    .preview-item {
+        background-color: var(--surface-color);
+    }
+    
+    .progress-container {
+        background-color: rgba(52, 152, 219, 0.1);
+    }
+}
+
+/* Focus Management for Accessibility */
+@media (max-width: 768px) {
+    /* Larger focus targets on mobile */
+    input[type="checkbox"] {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .checkbox-item {
+        min-height: 48px; /* WCAG touch target guideline */
+    }
+    
+    .generate-button {
+        min-height: 48px;
+    }
+}

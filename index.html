@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFXIV Height Mod Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FFXIV Height Mod Generator</h1>
+            <p>Generate customizable height modification packages for Final Fantasy XIV</p>
+            <div class="tab-navigation">
+                <button id="generator-tab" class="tab-button active">Generator</button>
+                <button id="collection-tab" class="tab-button">Collection</button>
+                <button id="sort-order-tab" class="tab-button">Sort Order</button>
+            </div>
+        </header>
+
+        <main id="generator-content">
+            <section class="upload-section">
+                <h2>Template Files (Optional)</h2>
+                <p>Upload custom template files or use built-in defaults</p>
+                <div class="file-upload-area">
+                    <div class="file-upload">
+                        <label for="meta-file">Meta Template (meta.json):</label>
+                        <input type="file" id="meta-file" name="meta-file" accept=".json">
+                        <span class="file-status" id="meta-status">Using default template</span>
+                    </div>
+                    <div class="file-upload">
+                        <label for="mod-file">Mod Template (default_mod.json):</label>
+                        <input type="file" id="mod-file" name="mod-file" accept=".json">
+                        <span class="file-status" id="mod-status">Using default template</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="configuration-section">
+                <h2>Configuration</h2>
+                
+                <div class="config-group">
+                    <h3>Multiplier Range</h3>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="min-multiplier">Minimum Multiplier:</label>
+                            <input type="number" id="min-multiplier" min="0.001" max="1000.0" step="0.1" value="0.5">
+                        </div>
+                        <div class="input-group">
+                            <label for="max-multiplier">Maximum Multiplier:</label>
+                            <input type="number" id="max-multiplier" min="0.1" max="1000.0" step="0.1" value="2.0">
+                        </div>
+                        <div class="input-group">
+                            <label for="step-increment">Step Increment:</label>
+                            <input type="number" id="step-increment" min="0.01" max="1000.0" step="0.01" value="0.1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <h3>Generation Options</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="generate-min" checked>
+                            <label for="generate-min">Generate MIN variants (reducing height - FemaleMinSize)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="generate-max" checked>
+                            <label for="generate-max">Generate MAX variants (increasing height - FemaleMaxSize)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <h3>Mod Naming</h3>
+                    <div class="input-group">
+                        <label for="mod-prefix">Custom Prefix (Optional):</label>
+                        <input type="text" id="mod-prefix" placeholder="e.g., Custom_">
+                    </div>
+                </div>
+            </section>
+
+            <section class="generation-section">
+                <h2>Generation</h2>
+                <div class="generation-controls">
+                    <button id="generate-btn" class="generate-button">Generate Height Mods</button>
+                    <div id="validation-messages" class="validation-messages"></div>
+                </div>
+                
+                <div id="progress-container" class="progress-container" style="display: none;">
+                    <div class="progress-info">
+                        <span id="progress-text">Preparing...</span>
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <div id="progress-details" class="progress-details"></div>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <h2>Preview</h2>
+                <div id="generation-preview" class="generation-preview">
+                    <p>Configure your settings above and click "Generate Height Mods" to see a preview of what will be generated.</p>
+                </div>
+            </section>
+        </main>
+
+        <main id="sort-order-content" style="display: none;">
+            <section class="sort-order-upload-section">
+                <h2>Sort Order Management</h2>
+                <p>Upload a Penumbra sort_order.json file and update it with newly generated mods</p>
+                
+                <div class="file-upload-area">
+                    <div class="file-upload">
+                        <label for="sort-order-file">Sort Order File (sort_order.json):</label>
+                        <input type="file" id="sort-order-file" name="sort-order-file" accept=".json">
+                        <span class="file-status" id="sort-order-status">No sort order file loaded</span>
+                    </div>
+                </div>
+
+                <div class="sort-order-info" id="sort-order-info" style="display: none;">
+                    <h3>Sort Order Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Total Entries:</label>
+                            <span id="sort-order-entry-count">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Height Mod Entries:</label>
+                            <span id="sort-order-height-count">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Empty Folders:</label>
+                            <span id="sort-order-empty-count">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sort-order-config" id="sort-order-config" style="display: none;">
+                    <h3>Height Mod Configuration</h3>
+                    <div class="config-group">
+                        <div class="input-group">
+                            <label for="height-folder-path">Height Folder Path:</label>
+                            <input type="text" id="height-folder-path" value="NewHeightMods" placeholder="e.g., NewHeightMods, HeightMods, Custom/Heights">
+                        </div>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="update-existing-heights">
+                                <label for="update-existing-heights">Update existing height mods to use this path</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sort-order-update-section">
+                <h2>Update Sort Order</h2>
+                <div class="update-controls">
+                    <button id="update-sort-order-btn" class="update-button" disabled>Update Sort Order with Generated Mods</button>
+                    <div id="sort-order-validation-messages" class="validation-messages"></div>
+                </div>
+            </section>
+        </main>
+
+        <main id="collection-content" style="display: none;">
+            <section class="collection-upload-section">
+                <h2>Collection Management</h2>
+                <p>Upload a Penumbra collection file and update it with newly generated mods</p>
+                
+                <div class="file-upload-area">
+                    <div class="file-upload">
+                        <label for="collection-file">Collection File (.json):</label>
+                        <input type="file" id="collection-file" name="collection-file" accept=".json">
+                        <span class="file-status" id="collection-status">No collection loaded</span>
+                    </div>
+                </div>
+
+                <div class="collection-info" id="collection-info" style="display: none;">
+                    <h3>Current Collection</h3>
+                    <div class="collection-name-display">
+                        <h4 id="collection-display-name">Collection Name</h4>
+                        <p class="collection-filename" id="collection-display-filename">filename.json</p>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Collection ID:</label>
+                            <span id="collection-id">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Total Mods:</label>
+                            <span id="collection-mod-count">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Height Mods:</label>
+                            <span id="collection-height-count">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="collection-update-section">
+                <h2>Update Collection</h2>
+                <div class="update-controls">
+                    <button id="update-collection-btn" class="update-button" disabled>Update Collection with Generated Mods</button>
+                    <div id="collection-validation-messages" class="validation-messages"></div>
+                </div>
+
+                <div class="collection-preview" id="collection-preview">
+                    <p>Upload a collection file and generate height mods to see what will be added.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 FFXIV Height Mod Generator - For educational purposes</p>
+        </footer>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="lib/jszip.min.js"></script>
+    <script src="lib/FileSaver.min.js"></script>
+    
+    <!-- Application Scripts (in order of dependency) -->
+    <script src="js/utils/constants.js"></script>
+    <script src="js/utils/formatters.js"></script>
+    <script src="js/utils/validators.js"></script>
+    <script src="js/core/FileProcessor.js"></script>
+    <script src="js/core/ZipManager.js"></script>
+    <script src="js/core/HeightModGenerator.js"></script>
+    <script src="js/ui/ProgressHandler.js"></script>
+    <script src="js/ui/UserInterface.js"></script>
+    <script src="js/ui/CollectionManager.js"></script>
+    <script src="js/ui/SortOrderManager.js"></script>
+    <script src="js/ui/EventHandlers.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
