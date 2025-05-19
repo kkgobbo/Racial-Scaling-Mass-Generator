@@ -19,7 +19,7 @@ class Application {
         }
 
         try {
-            console.log('Initializing FFXIV Height Mod Generator...');
+            console.log('Initializing Racial Scaling Mass Generator...');
 
             // Check for required dependencies
             if (typeof JSZip === 'undefined') {
@@ -77,7 +77,7 @@ class Application {
             console.log('Application initialized successfully');
 
             // Show welcome message
-            this.ui.showToast('FFXIV Height Mod Generator ready!', 'success');
+            this.ui.showToast('Racial Scaling Mass Generator ready!', 'success');
 
         } catch (error) {
             console.error('Failed to initialize application:', error);
@@ -360,7 +360,7 @@ class Application {
             
             const a = document.createElement('a');
             a.href = url;
-            a.download = `ffxiv-height-mod-settings-${new Date().toISOString().slice(0, 10)}.json`;
+            a.download = `racial-scaling-settings-${new Date().toISOString().slice(0, 10)}.json`;
             a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
@@ -558,7 +558,7 @@ let ffxivApp = null;
 
 // Initialize application when DOM content is loaded
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('DOM content loaded, initializing FFXIV Height Mod Generator...');
+    console.log('DOM content loaded, initializing Racial Scaling Mass Generator...');
     
     try {
         // Create and initialize the application

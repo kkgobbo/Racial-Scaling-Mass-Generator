@@ -43,52 +43,8 @@ class UserInterface {
         this.validationContainer = this.elements.validationMessages;
         this.previewContainer = this.elements.generationPreview;
 
-        this.setupInputValidation();
+        // Remove the duplicate validation setup - EventHandlers.js handles this
         this.isInitialized = true;
-    }
-
-    setupInputValidation() {
-        // Real-time validation for numeric inputs
-        const numericInputs = [
-            this.elements.minMultiplier,
-            this.elements.maxMultiplier,
-            this.elements.stepIncrement
-        ];
-
-        numericInputs.forEach(input => {
-            if (input) {
-                input.addEventListener('input', () => this.validateNumericInput(input));
-                input.addEventListener('blur', () => this.validateNumericInput(input));
-            }
-        });
-
-        // Checkbox validation
-        [this.elements.generateMin, this.elements.generateMax].forEach(checkbox => {
-            if (checkbox) {
-                checkbox.addEventListener('change', () => this.validateCheckboxes());
-            }
-        });
-
-        // Prefix validation
-        if (this.elements.modPrefix) {
-            this.elements.modPrefix.addEventListener('input', () => this.validatePrefix());
-        }
-    }
-
-    validateNumericInput(input) {
-        const value = parseFloat(input.value);
-        const min = parseFloat(input.min);
-        const max = parseFloat(input.max);
-
-        input.classList.remove('error', 'valid');
-
-        if (isNaN(value) || value < min || value > max) {
-            input.classList.add('error');
-            return false;
-        } else {
-            input.classList.add('valid');
-            return true;
-        }
     }
 
     validateCheckboxes() {

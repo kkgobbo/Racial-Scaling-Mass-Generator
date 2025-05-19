@@ -32,7 +32,7 @@ const RACE_MAPPING = {
 const DEFAULT_TEMPLATES = {
     META: {
         "Name": "[PLACEHOLDER] Height Mod",
-        "Author": "Height Mod Generator",
+        "Author": "Racial Scaling Mass Generator",
         "Version": "1.0.0",
         "ModTags": ["Character", "Body"],
         "Description": "Generated height modification for FFXIV characters",
