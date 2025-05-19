@@ -111,6 +111,10 @@ class FileProcessor {
             const modifiedMeta = { ...baseMetadata };
             modifiedMeta.Name = folderName;
             
+            // Update ModTags based on variant
+            modifiedMeta.ModTags = actualVariant === 'MIN' ? 
+                ['Size', 'SizeMin'] : ['Size', 'SizeMax'];
+            
             // Create modified mod data
             const modifiedMod = JSON.parse(JSON.stringify(baseModData));
             
@@ -154,7 +158,7 @@ class FileProcessor {
         
         // Remove decimal point and pad to 4 digits with leading zeros
         const paddedNumber = multiplierStr.replace('.', '').padStart(4, '0');
-        const baseName = `[${paddedNumber}] Height ${variant} - ${multiplier.toFixed(3).replace(/\.?0+$/, '')}x`;
+        const baseName = `[${paddedNumber}] Height ${variant} - ${formatMultiplier(multiplier)}x`;
         return prefix ? `${prefix}${baseName}` : baseName;
     }
 
